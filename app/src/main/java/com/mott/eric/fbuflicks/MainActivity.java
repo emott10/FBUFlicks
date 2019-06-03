@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void logError(String message, Throwable error, boolean alertUser){
         Log.e(TAG, message, error);
         if(alertUser){
