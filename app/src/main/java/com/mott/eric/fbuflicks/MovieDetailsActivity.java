@@ -23,7 +23,6 @@ import cz.msebera.android.httpclient.Header;
 public class MovieDetailsActivity extends YouTubeBaseActivity{
 
     Movie movie;
-
     TextView tvTitle;
     TextView tvOverview;
     TextView tvDate;

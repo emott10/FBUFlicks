@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -53,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(/*@NonNull*/ ViewHolder holder, int position) {
         //get the movie data at the specified position
         Movie movie = movies.get(position);
-        //populate the view with the movie data
+        //populate the view with the movie data98
         holder.tvTitle.setText(movie.getTitle());
         holder.tvOverview.setText(movie.getOverview());
 
@@ -87,24 +90,44 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     //create the viewholder as a static inner class
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        //track view objects
-        ImageView ivPosterImage;
-        ImageView ivBackdropImage;
-        TextView tvTitle;
-        TextView tvOverview;
+//        track view objects
+//        ImageView ivPosterImage;
+//        ImageView ivBackdropImage;
+//        TextView tvTitle;
+//        TextView tvOverview;
+        @Nullable
+        @BindView(R.id.ivPoster) ImageView ivPosterImage;
+        @BindView(R.id.tvTitle) TextView tvTitle;
+        @BindView(R.id.tvOverview) TextView tvOverview;
+        @Nullable
+        @BindView(R.id.ivBackdropImage) ImageView ivBackdropImage;
+
+
 
         public ViewHolder (@NonNull View itemView) {
             super(itemView);
-            ivPosterImage = itemView.findViewById(R.id.ivPoster);
-            ivBackdropImage = itemView.findViewById(R.id.ivBackdropImage);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
+//            ivPosterImage = itemView.findViewById(R.id.ivPoster);
+//            ivBackdropImage = itemView.findViewById(R.id.ivBackdropImage);
+//            tvTitle = itemView.findViewById(R.id.tvTitle);
+//            tvOverview = itemView.findViewById(R.id.tvOverview);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(this);
         }
 
+//        @OnItemClick(R.id.clMovie)
+//        public void movieClick{
+//            int position = getAdapterPosition();
+//
+//            if(position != RecyclerView.NO_POSITION){
+//                Movie movie = movies.get(position);
+//                Intent i = new Intent(context, MovieDetailsActivity.class);
+//                i.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+//                context.startActivity(i);
+//            }
+//        }
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
